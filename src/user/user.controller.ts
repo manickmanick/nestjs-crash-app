@@ -1,29 +1,27 @@
 // nest g co <name> --no-spec
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { CreateUserDto } from './dto/createUserDto';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
+  constructor(private readonly userService: UserService) {}
   @Get('all/:id')
   getAll(@Param('id') id) {
     return {
       id,
     };
   }
-  // @Get('all/:id')
-  // findAll(@Param('id') id: string) {
-  //   return {
-  //     user: {
-  //       id,
-  //     },
-  //   };
-  // }
+
   @Post()
-  create(@Body('name') name: string) {
-    return name;
+  create(@Body() body: CreateUserDto) {
+    return this.userService.createUser(body);
   }
-  // @Post()
-  // createUser(@Body() createUserDto: CreateUserDto) {
-  //   return createUserDto;
-  // }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    var obj: any = this.userService.findOne(id);
+    obj.success = 'this is valid';
+    return obj;
+  }
 }
