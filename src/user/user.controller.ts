@@ -5,7 +5,7 @@ import { CreateUserDto } from './dto/createUserDto';
 @Controller('user')
 export class UserController {
   @Get('all/:id')
-  getAll(@Param('id') id: string) {
+  getAll(@Param('id') id) {
     return {
       id,
     };
@@ -18,9 +18,12 @@ export class UserController {
   //     },
   //   };
   // }
-
   @Post()
-  createUser(@Body() createUserDto: CreateUserDto) {
-    return createUserDto;
+  create(@Body() body: any) {
+    return body;
   }
+  // @Post()
+  // createUser(@Body() createUserDto: CreateUserDto) {
+  //   return createUserDto;
+  // }
 }
