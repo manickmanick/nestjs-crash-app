@@ -19,8 +19,8 @@ export class UserController {
   //   };
   // }
   @Post()
-  create(@Body() body: any) {
-    return body;
+  create(@Body('name') name: string) {
+    return name;
   }
   // @Post()
   // createUser(@Body() createUserDto: CreateUserDto) {
