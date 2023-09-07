@@ -4,9 +4,11 @@ import { CreateUserDto } from './dto/createUserDto';
 
 @Controller('user')
 export class UserController {
-  @Get('all')
-  getAll() {
-    return 'all users';
+  @Get('all/:id')
+  getAll(@Param('id') id: string) {
+    return {
+      id,
+    };
   }
   // @Get('all/:id')
   // findAll(@Param('id') id: string) {
